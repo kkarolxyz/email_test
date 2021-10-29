@@ -13,3 +13,4 @@ class TestData():
     chrome_driver_path = "./chromedriver.exe"
     base_url = "https://www.onet.pl"
     title_homePage = "Onet"
+    title_email_page = "Poczta"

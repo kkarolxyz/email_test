@@ -1,4 +1,6 @@
 import unittest
+import time
+
 from inspect import getsourcefile
 import os.path
 import sys
@@ -11,7 +13,7 @@ sys.path.insert(0, parent_dir)
 
 from selenium import webdriver
 from Data.TestData import TestData
-from Pages.BasePage import HomePage
+from Pages.BasePage import HomePage, MailPage
 
 class TestPageBase(unittest.TestCase):
     def setUp(self):
@@ -28,7 +30,19 @@ class TestPage(TestPageBase):
     
     def test_A_home_page_loaded_succesfully(self):
         self.homePage = HomePage(self.driver)
-        assert self.homePage.is_title_matches()
+        self.homePage.permission_is_true()
+        try:
+            assert self.homePage.is_title_matches()
+        except Exception as error:
+            print(error,"WebPage Failed to load")
+
+    def test_B_mail_page_loaded_succesfully(self):
+        self.homePage = HomePage(self.driver)
+        self.homePage.permission_is_true()
+        self.emailPage = MailPage(self.driver)
+        self.emailPage.move_to_email_page()
+        assert self.emailPage.is_email_page_loaded()
+
 
 if __name__ == '__main__':
     unittest.main()
