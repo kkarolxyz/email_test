@@ -23,13 +23,13 @@ class BasePage():
         self.driver = drier
     
     def click(self, by_locator):
-       WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((by_locator))).click()
+       WebDriverWait(self.driver, 60).until(EC.visibility_of_element_located((by_locator))).click()
 
     def is_element_located(self, by_locator):
-        WebDriverWait(self.driver,20).until(EC.presence_of_element_located(by_locator))
+        WebDriverWait(self.driver,60).until(EC.presence_of_element_located(by_locator))
     
     def enter_text(self,by_locator, send_text):
-        return WebDriverWait(self.driver,10).until(
+        WebDriverWait(self.driver,60).until(
             EC.visibility_of_element_located(by_locator)).send_keys(send_text)
 
 class HomePage(BasePage):
@@ -62,6 +62,9 @@ class MailPageLoginValid(BasePage):
             self.is_element_located(Locators.email_form)
         except Exception as error:
             print(error,"E-Mail form is not visible")
+    
+    def login_remember_false(self):
+        self.click(Locators.login_remember)
 
     def insert_valid_email_name(self):
         self.driver.find_element(*Locators.email_form).clear()
@@ -71,7 +74,11 @@ class MailPageLoginValid(BasePage):
         try:
             self.driver.find_element(*Locators.password_form).clear()
             self.enter_text(Locators.password_form,TestData.valid_pass)
-            self.click(Locators.submit_button)
         except Exception as error:
             print(error,"Fill password - FAILED")
-        
+    
+    def submit_button(self):
+        try : 
+            self.click(Locators.submit_button)
+        except Exception as error:
+            print(error,"Submit button is not visible")

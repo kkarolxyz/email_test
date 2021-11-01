@@ -15,3 +15,7 @@ class Locators():
 
     #submit button 
     submit_button = (By.XPATH, "//*[@id='loginForm']/div[3]/input")
+
+    #remember login 
+
+    login_remember = (By.XPATH, "//*[@id='loginForm']/div[3]/label/span[1]")

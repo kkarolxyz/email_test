@@ -52,6 +52,9 @@ class TestPage(TestPageBase):
         self.mailPageLogin.is_email_form_located()
         self.mailPageLogin.insert_valid_email_name()
         self.mailPageLogin.insert_valid_pass()
+        self.mailPageLogin.login_remember_false()
+        self.mailPageLogin.submit_button()
+
 
 if __name__ == '__main__':
     unittest.main()
