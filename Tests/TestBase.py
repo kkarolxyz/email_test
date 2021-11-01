@@ -5,6 +5,8 @@ from inspect import getsourcefile
 import os.path
 import sys
 
+import selenium
+
 current_path = os.path.abspath(getsourcefile(lambda:0))
 current_dir = os.path.dirname(current_path)
 parent_dir = current_dir[:current_dir.rfind(os.path.sep)]
@@ -27,15 +29,16 @@ class TestPageBase(unittest.TestCase):
 class TestPage(TestPageBase):
     def setUp(self):
         super().setUp()
-    
+
     def test_A_home_page_loaded_succesfully(self):
         self.homePage = HomePage(self.driver)
         self.homePage.permission_is_true()
-        try:
+        try:                
             assert self.homePage.is_title_matches()
         except Exception as error:
             print(error,"WebPage Failed to load")
-
+   
+'''
     def test_B_mail_page_loaded_succesfully(self):
         self.homePage = HomePage(self.driver)
         self.homePage.permission_is_true()
@@ -54,7 +57,8 @@ class TestPage(TestPageBase):
         self.mailPageLogin.insert_valid_pass()
         self.mailPageLogin.login_remember_false()
         self.mailPageLogin.submit_button()
-
+'''
 
 if __name__ == '__main__':
     unittest.main()
+    

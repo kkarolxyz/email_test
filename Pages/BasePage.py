@@ -23,13 +23,13 @@ class BasePage():
         self.driver = drier
     
     def click(self, by_locator):
-       WebDriverWait(self.driver, 60).until(EC.visibility_of_element_located((by_locator))).click()
+       WebDriverWait(self.driver, 20).until(EC.element_to_be_clickable((by_locator))).click()
 
     def is_element_located(self, by_locator):
-        WebDriverWait(self.driver,60).until(EC.presence_of_element_located(by_locator))
+        WebDriverWait(self.driver,20).until(EC.presence_of_element_located(by_locator))
     
     def enter_text(self,by_locator, send_text):
-        WebDriverWait(self.driver,60).until(
+        WebDriverWait(self.driver,20).until(
             EC.visibility_of_element_located(by_locator)).send_keys(send_text)
 
 class HomePage(BasePage):
