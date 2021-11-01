@@ -14,3 +14,6 @@ class TestData():
     base_url = "https://www.onet.pl"
     title_homePage = "Onet"
     title_email_page = "Poczta"
+    valid_email_name = "pythonselenium@onet.pl"
+    valid_pass = "Python1234!"
+    
