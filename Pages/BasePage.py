@@ -25,6 +25,12 @@ class BasePage():
     def click(self, by_locator):
        WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((by_locator))).click()
 
+    def is_element_located(self, by_locator):
+        WebDriverWait(self.driver,20).until(EC.presence_of_element_located(by_locator))
+    
+    def enter_text(self,by_locator, send_text):
+        return WebDriverWait(self.driver,10).until(
+            EC.visibility_of_element_located(by_locator)).send_keys(send_text)
 
 class HomePage(BasePage):
     def __init__(self, drier):
@@ -46,3 +52,26 @@ class MailPage(BasePage):
 
     def is_email_page_loaded(self):
         return TestData.title_email_page in self.driver.title
+
+class MailPageLoginValid(BasePage):
+    def __init__(self, drier):
+        super().__init__(drier)
+    
+    def is_email_form_located(self):
+        try:
+            self.is_element_located(Locators.email_form)
+        except Exception as error:
+            print(error,"E-Mail form is not visible")
+
+    def insert_valid_email_name(self):
+        self.driver.find_element(*Locators.email_form).clear()
+        self.enter_text(Locators.email_form, TestData.valid_email_name)
+        
+    def insert_valid_pass(self):
+        try:
+            self.driver.find_element(*Locators.password_form).clear()
+            self.enter_text(Locators.password_form,TestData.valid_pass)
+            self.click(Locators.submit_button)
+        except Exception as error:
+            print(error,"Fill password - FAILED")
+        

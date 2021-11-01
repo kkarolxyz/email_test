@@ -6,3 +6,12 @@ class Locators():
 
     #e-mail page icon
     email_page = (By.CLASS_NAME, "mail")
+
+    #e-mail form is visable
+    email_form = (By.XPATH, "//*[@id='mailFormLogin']")
+
+    #password form
+    password_form = (By.XPATH, "//*[@id='mailFormPassword']")
+
+    #submit button 
+    submit_button = (By.XPATH, "//*[@id='loginForm']/div[3]/input")

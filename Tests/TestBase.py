@@ -13,7 +13,7 @@ sys.path.insert(0, parent_dir)
 
 from selenium import webdriver
 from Data.TestData import TestData
-from Pages.BasePage import HomePage, MailPage
+from Pages.BasePage import HomePage, MailPage, MailPageLoginValid
 
 class TestPageBase(unittest.TestCase):
     def setUp(self):
@@ -43,6 +43,15 @@ class TestPage(TestPageBase):
         self.emailPage.move_to_email_page()
         assert self.emailPage.is_email_page_loaded()
 
+    def test_C_mail_page_login_succesfully(self):
+        self.homePage = HomePage(self.driver)
+        self.homePage.permission_is_true()
+        self.emailPage = MailPage(self.driver)
+        self.emailPage.move_to_email_page()
+        self.mailPageLogin = MailPageLoginValid(self.driver)
+        self.mailPageLogin.is_email_form_located()
+        self.mailPageLogin.insert_valid_email_name()
+        self.mailPageLogin.insert_valid_pass()
 
 if __name__ == '__main__':
     unittest.main()
