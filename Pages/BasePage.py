@@ -52,6 +52,12 @@ class MailPage(BasePage):
 
     def is_email_page_loaded(self):
         return TestData.title_email_page in self.driver.title
+    
+    def submit_button(self):
+        try : 
+            self.click(Locators.submit_button)
+        except Exception as error:
+            print(error,"Submit button is not visible")
 
 class MailPageLoginValid(BasePage):
     def __init__(self, drier):
@@ -62,7 +68,7 @@ class MailPageLoginValid(BasePage):
             self.is_element_located(Locators.email_form)
         except Exception as error:
             print(error,"E-Mail form is not visible")
-    
+
     def login_remember_false(self):
         self.click(Locators.login_remember)
 
@@ -77,8 +83,16 @@ class MailPageLoginValid(BasePage):
         except Exception as error:
             print(error,"Fill password - FAILED")
     
-    def submit_button(self):
-        try : 
-            self.click(Locators.submit_button)
+    def is_user_mail_page_available(self):
+        try:
+            self.is_element_located(Locators.user_page_available)
         except Exception as error:
-            print(error,"Submit button is not visible")
+            print(error, "User email apge not available")
+
+class MailPageLoginInValid(BasePage):
+
+    def __init__(self, drier):
+        super().__init__(drier)
+    
+    
+    
