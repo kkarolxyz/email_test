@@ -16,4 +16,5 @@ class TestData():
     title_email_page = "Poczta"
     valid_email_name = "pythonselenium@onet.pl"
     valid_pass = "Python1234!"
+    invalid_pass = "XYZ"
     

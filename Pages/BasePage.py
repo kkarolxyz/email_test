@@ -1,5 +1,6 @@
 import time
 from selenium import webdriver
+from selenium.webdriver.common import by
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
@@ -87,12 +88,19 @@ class MailPageLoginValid(BasePage):
         try:
             self.is_element_located(Locators.user_page_available)
         except Exception as error:
-            print(error, "User email apge not available")
+            print(error, "User email page not available")
 
 class MailPageLoginInValid(BasePage):
 
     def __init__(self, drier):
         super().__init__(drier)
+    
+    def insert_invalid_pass(self):
+        try:
+            self.driver.find_element(*Locators.password_form).clear()
+            self.enter_text(Locators.password_form, TestData.invalid_pass)
+        except Exception as error:
+            print(error, "Fill invalid password - FAILED")
     
     
     

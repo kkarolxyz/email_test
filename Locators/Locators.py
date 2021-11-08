@@ -21,3 +21,8 @@ class Locators():
 
     #user email page
     user_page_available = (By.XPATH, "//*[@id='wrapper']/div[4]/aside/div[2]/nav")
+
+    #new mail button
+    new_mail_button = (By.XPATH, "//*[@id='wrapper']/div[4]/aside/div[1]/div/span")
+
+    
