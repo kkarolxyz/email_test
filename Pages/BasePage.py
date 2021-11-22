@@ -102,5 +102,12 @@ class MailPageLoginInValid(BasePage):
         except Exception as error:
             print(error, "Fill invalid password - FAILED")
     
+    def insert_invalid_email(self):
+        try:
+            self.driver.find_element(*Locators.email_form).clear()
+            self.enter_text(Locators.password_form, TestData.invalid_email_name)
+        except Exception as error:
+            print(error, "Fill invalid mail - FAILED")
+    
     
     

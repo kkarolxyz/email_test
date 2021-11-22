@@ -28,7 +28,6 @@ class TestPage(TestPageBase):
     def setUp(self):
         super().setUp()
 
-    
     def test_A_home_page_loaded_succesfully(self):
         self.homePage = HomePage(self.driver)
         self.homePage.permission_is_true()
@@ -57,7 +56,7 @@ class TestPage(TestPageBase):
         self.mailPageLogin.login_remember_false()
         self.emailPage.submit_button()
         self.mailPageLogin.is_user_mail_page_available()
-
+        
     def test_D_mail_page_login_unsuccesfully(self):
         self.homePage = HomePage(self.driver)
         self.homePage.permission_is_true()
@@ -69,8 +68,13 @@ class TestPage(TestPageBase):
         self.mailPageInvalid = MailPageLoginInValid(self.driver)
         self.mailPageInvalid.insert_invalid_pass()
         self.mailPageLogin.login_remember_false()
+        self.emailPage.submit_button()
         self.driver.execute_script("window.history.go(-1)")
-        time.sleep(10)
+        self.mailPageInvalid.insert_invalid_email()
+        self.mailPageLogin.insert_valid_pass()
+        self.mailPageLogin.login_remember_false()
+        self.emailPage.submit_button()
+        self.driver.execute_script("window.history.go(-1)")
 
 
 if __name__ == '__main__':
