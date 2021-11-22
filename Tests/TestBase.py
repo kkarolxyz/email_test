@@ -79,3 +79,4 @@ class TestPage(TestPageBase):
 
 if __name__ == '__main__':
     unittest.main()
+    # unittest.main(testRunner=HtmlTestRunner.HTMLTestRunner(output='results'))
